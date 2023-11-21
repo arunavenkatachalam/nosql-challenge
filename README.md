@@ -85,32 +85,39 @@ Use the following questions to explore the database, and find the answers, so yo
 	c) Convert the result to a Pandas DataFrame, print the number of rows in the DataFrame, and display the first 10 rows.
 
 1. Which establishments have a hygiene score equal to 20?
+2. 
 	** Find the establishments with a hygiene score of 20
+   
 	query = {'scores.Hygiene': 20}
 
 	** Use count_documents to display the number of documents in the result
+   
 	results = establishments.find(query)
 	results_count = establishments.count_documents(query)
 
 	** Display the first document in the results using pprint
+   
 	pprint(results[0])
 	print("Number of documents in result:",results_count)
 
 
-2. Which establishments in London have a RatingValue greater than or equal to 4?
+4. Which establishments in London have a RatingValue greater than or equal to 4?
 	** Find the establishments with London as the Local Authority and has a RatingValue greater than or equal to 4.
+   
 	match_query = {'AddressLine1':{'$regex':"London"},'RatingValue': {'$gte': 4}}
 	results = establishments.find(match_query)
 	results_count = establishments.count_documents(match_query)
 
 	** Display the first document in the results using pprint
+   
 	pprint(results[0])
 	print("Number of documents in result:",results_count)
  
-3. What are the top 5 establishments with a RatingValue of 5, sorted by lowest hygiene score, nearest to the new restaurant added, "Penang Flavours"?
+6. What are the top 5 establishments with a RatingValue of 5, sorted by lowest hygiene score, nearest to the new restaurant added, "Penang Flavours"?
 	** Search within 0.01 degree on either side of the latitude and longitude.
 	** Rating value must equal 5
 	** Sort by hygiene score
+   
 	degree_search = 0.01
 	latitude = 51.49014200
 	longitude = 0.08384000
@@ -127,14 +134,16 @@ Use the following questions to explore the database, and find the answers, so yo
 	limit = 5
 
 	** Print the results
+   
 	results = list(establishments.find(query).sort(sort).limit(limit))
 
 
-4. How many establishments in each Local Authority area have a hygiene score of 0? Sort the results from highest to lowest, and print out the top ten local authority areas.
+8. How many establishments in each Local Authority area have a hygiene score of 0? Sort the results from highest to lowest, and print out the top ten local authority areas.
 	** Create a pipeline that: 
 	**  Matches establishments with a hygiene score of 0
 	**  Groups the matches by Local Authority
 	**  Sorts the matches from highest to lowest
+   
 	match_query = {'$match': {'scores.Hygiene': 0}}
 	group_query = {'$group': {'_id': "$LocalAuthorityName", 'count': { '$sum': 1 }}}
 	sort_values = {'$sort': { 'count': -1 }}
@@ -142,9 +151,11 @@ Use the following questions to explore the database, and find the answers, so yo
 	results = list(establishments.aggregate(pipeline))
 
 	** Print the number of documents in the result
+   
 	print("Number of documments in result: ", len(results))
 
 	** Print the first 10 results
+   
 	pprint(results[0:10])
 
 
