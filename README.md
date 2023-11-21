@@ -85,7 +85,7 @@ Use the following questions to explore the database, and find the answers, so yo
 	c) Convert the result to a Pandas DataFrame, print the number of rows in the DataFrame, and display the first 10 rows.
 
 1. Which establishments have a hygiene score equal to 20?
-2. 
+ 
 	** Find the establishments with a hygiene score of 20
    
 	query = {'scores.Hygiene': 20}
@@ -101,7 +101,7 @@ Use the following questions to explore the database, and find the answers, so yo
 	print("Number of documents in result:",results_count)
 
 
-4. Which establishments in London have a RatingValue greater than or equal to 4?
+2. Which establishments in London have a RatingValue greater than or equal to 4?
 	** Find the establishments with London as the Local Authority and has a RatingValue greater than or equal to 4.
    
 	match_query = {'AddressLine1':{'$regex':"London"},'RatingValue': {'$gte': 4}}
@@ -113,7 +113,7 @@ Use the following questions to explore the database, and find the answers, so yo
 	pprint(results[0])
 	print("Number of documents in result:",results_count)
  
-6. What are the top 5 establishments with a RatingValue of 5, sorted by lowest hygiene score, nearest to the new restaurant added, "Penang Flavours"?
+3. What are the top 5 establishments with a RatingValue of 5, sorted by lowest hygiene score, nearest to the new restaurant added, "Penang Flavours"?
 	** Search within 0.01 degree on either side of the latitude and longitude.
 	** Rating value must equal 5
 	** Sort by hygiene score
@@ -138,7 +138,7 @@ Use the following questions to explore the database, and find the answers, so yo
 	results = list(establishments.find(query).sort(sort).limit(limit))
 
 
-8. How many establishments in each Local Authority area have a hygiene score of 0? Sort the results from highest to lowest, and print out the top ten local authority areas.
+4. How many establishments in each Local Authority area have a hygiene score of 0? Sort the results from highest to lowest, and print out the top ten local authority areas.
 	** Create a pipeline that: 
 	**  Matches establishments with a hygiene score of 0
 	**  Groups the matches by Local Authority
