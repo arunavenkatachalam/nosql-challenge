@@ -6,7 +6,7 @@ The UK Food Standards Agency evaluates various establishments across the United 
 
 # Part 1: Database and Jupyter Notebook Set Up
 
-1. Use NoSQL_setup_starter.ipynb, Imported the data provided in the establishments.json file from the Terminal. Named the database uk_food and the collection establishments. Copied the text used to import the data from the Terminal to a markdown cell in the notebook.
+1. Use NoSQL_setup_starter.ipynb, imported the data provided in the establishments.json file from the Terminal. Named the database uk_food and the collection establishments. Copied the text used to import the data from the Terminal to a markdown cell in the notebook.
 
   ** mongoimport --type json -d uk_food -c establishments --drop --jsonArray establishments.json**
 
@@ -76,7 +76,7 @@ Use NoSQL_analysis_starter.ipynb, RatingValue refers to the overall rating decid
 	a) This field also includes non-numeric values such as 'Pass', where 'Pass' means that the establishment passed their inspection but isn't given a number rating. We will coerce non-numeric values to 		    nulls during the database setup before converting ratings to integers.
 	b) The scores for Hygiene, Structural, and ConfidenceInManagement work in reverse. This means, the higher the value, the worse the establishment is in these areas.
 
-Use the following questions to explore the database, and find the answers, so you can provide them to the magazine editors.
+Use the following questions to explore the database and find the answers, so you can provide them to the magazine editors.
 
 	a) Use count_documents to display the number of documents contained in the result.
 
@@ -114,7 +114,7 @@ Use the following questions to explore the database, and find the answers, so yo
 	print("Number of documents in result:",results_count)
  
 3. What are the top 5 establishments with a RatingValue of 5, sorted by lowest hygiene score, nearest to the new restaurant added, "Penang Flavours"?
-	** Search within 0.01 degree on either side of the latitude and longitude.
+	** Search within 0.01 degrees on either side of the latitude and longitude.
 	** Rating value must equal 5
 	** Sort by hygiene score
    
@@ -159,5 +159,5 @@ Use the following questions to explore the database, and find the answers, so yo
 	pprint(results[0:10])
 
 
-The result for the above queries are stored in sepaerate dataframes result_df, result_df_1, result_df_2, result_df_3 respectively.
+The results for the above queries are stored in separate dataframes result_df, result_df_1, result_df_2, result_df_3, respectively.
  
